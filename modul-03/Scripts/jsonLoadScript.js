@@ -4,33 +4,32 @@ function init() {
   fetchData("Data/data.json").then((data) => {
     console.log(data);
 
-    data.forEach(addArticleToPage, mainContentArea);
+    addArticlesToPage(data, mainContentArea);
   });
 }
 
-function addArticleToPage(article, parrentElement) {
-  let contentToInsert = "";
+function addArticlesToPage(articles, parrentElement) {
+  articles.forEach((article) => {
+    let articleToInsert =
+      "<div id='" +
+      article.id +
+      "' class='content'>" +
+      "<h1>" +
+      article.heading +
+      "</h1>" +
+      "<p class='inner-content'>" +
+      article.content +
+      "</p>" +
+      "<p class='author'>" +
+      article.author +
+      "</p>" +
+      "<p class='contact'>" +
+      article.email +
+      "</p>" +
+      "</div>";
 
-  let articleToInsert =
-    "<div id='" +
-    article.id +
-    "' class='content'>" +
-    "<h1>" +
-    article.heading +
-    "</h1>" +
-    "<p class='inner-content'>" +
-    contentToInsert +
-    "</p>" +
-    //authorElementToInsert
-    "<p class='author'<strong>" +
-    article.author +
-    "</strong></p>" +
-    "<p class='contact'>" +
-    article.email +
-    "</p>" +
-    "</div>";
-
-  parrentElement.innerHTML = parrentElement.innerHTML + articleToInsert;
+    parrentElement.innerHTML = parrentElement.innerHTML + articleToInsert;
+  });
 }
 
 //Magi - det taler vi om senere!!
